@@ -1,8 +1,23 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { SafeAreaView } from "react-native";
-import { Welcome } from "./src/screens/Welcome";
+import AppLoading from "expo-app-loading";
+import {
+  useFonts,
+  Jost_400Regular,
+  Jost_600SemiBold,
+} from "@expo-google-fonts/jost";
+
+//Components
+import Routes from "./src/stacks";
 
 export default function App() {
-  return <Welcome />;
+  let [fontsLoaded] = useFonts({
+    Jost_400Regular,
+    Jost_600SemiBold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return <Routes />;
+  }
 }

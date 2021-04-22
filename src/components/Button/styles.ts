@@ -1,8 +1,7 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Dimensions} from "react-native";
 import colors from "../../styles/colors";
 
 export const styles = StyleSheet.create({
-
     button: {
         backgroundColor: colors.green,
         color: colors.white,
@@ -11,7 +10,7 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
         marginBottom: 10,
         height: 56,
-        width: 56,
+        width: '100%',
     }, 
 
     btntxt: {

@@ -2,11 +2,12 @@ import * as React from "react";
 import { Text, SafeAreaView, Image, View } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 
-import { Button } from "../../components/Button";
+//Components
+import Button from "../../components/atoms/Button";
 
 import { styles } from "./styles";
-import wateringImg from "../../assets/watering.png";
 import { Feather } from "@expo/vector-icons";
+import wateringImg from "../../assets/watering.png";
 
 export function Welcome() {
   const navigation = useNavigation();

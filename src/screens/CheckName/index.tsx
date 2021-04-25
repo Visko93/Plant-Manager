@@ -12,7 +12,7 @@ import {
 import { useNavigation } from "@react-navigation/core";
 
 //Components
-import { Button } from "../../components/Button";
+import Button from "../../components/atoms/Button";
 
 import { colors } from "../../styles";
 import { styles } from "./styles";
@@ -68,7 +68,7 @@ export function CheckName() {
                 <Button
                   title="Confirmar"
                   onPress={handleConfirm}
-                  disabled={!isFilled}
+                  //disabled={!isFilled}
                 />
               </View>
             </View>

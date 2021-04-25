@@ -6,16 +6,20 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { useNavigation } from "@react-navigation/core";
 
 //Components
-import { Button } from "../../components/Button";
+import Button from "../../components/atoms/Button";
 
 //UI
 import { styles } from "./styles";
 
 export function Confirmation(props: any) {
-  console.log(props);
+  const navigation = useNavigation();
 
+  function handleMoveOn() {
+    navigation.navigate("PlantSelect");
+  }
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
@@ -31,7 +35,7 @@ export function Confirmation(props: any) {
               cuidado.
             </Text>
             <View style={styles.callToAction}>
-              <Button title="Confirmar" />
+              <Button onPress={handleMoveOn} title="Confirmar" />
             </View>
           </View>
         </View>

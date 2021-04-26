@@ -1,16 +1,18 @@
 import * as React from "react";
-import { Text, Image, View } from "react-native";
-import { useNavigation } from "@react-navigation/core";
+import { Text, Image, View, Alert } from "react-native";
 
 //Components
-import Button from "../../components/atoms/Button";
 import { Header } from "../../components/molecules/Header";
 
 import { styles } from "./styles";
-import { Feather } from "@expo/vector-icons";
 import waterdrop from "../../assets/waterdrop.png";
 import { FlatList } from "react-native-gesture-handler";
-import { loadPlants, PlantProps } from "../../util/storage";
+import {
+  loadPlants,
+  PlantProps,
+  removePlant,
+  StoragePlantProps,
+} from "../../util/storage";
 import { formatDistance } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { PlantCardSecondary } from "../../components/atoms/PlantCardSecondary";
@@ -41,6 +43,27 @@ export function CurrentPlants() {
     loadStoragedData();
   }, []);
 
+  function handleRemove(plant: PlantProps) {
+    Alert.alert("Remover", `Deseja Remover a ${plant.name}`, [
+      { text: "Não 🥳", style: "cancel" },
+      {
+        text: "Sim 😨",
+        onPress: async () => {
+          try {
+            await removePlant(String(plant.id));
+            setMyPlants((prevState) =>
+              prevState.filter((item) => item.id !== plant.id)
+            );
+          } catch (err) {
+            Alert.alert(
+              "Não conseguimos remover ela, talvez a raiz esteja muito Forte."
+            );
+          }
+        },
+      },
+    ]);
+  }
+
   if (loading) return <Loading />;
   return (
     <View style={styles.container}>
@@ -55,7 +78,12 @@ export function CurrentPlants() {
         <FlatList
           data={myPlants}
           keyExtractor={(item) => String(item.id)}
-          renderItem={({ item }) => <PlantCardSecondary data={item} />}
+          renderItem={({ item }) => (
+            <PlantCardSecondary
+              data={item}
+              handleRemove={() => handleRemove(item)}
+            />
+          )}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flex: 1 }}
         />

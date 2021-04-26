@@ -36,6 +36,18 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         fontFamily: fonts.body,
         color: colors.body_light
+    },
+    removebtn: {
+        width: 140,
+        height: 103,
+        backgroundColor: colors.red,
+        marginTop: 5,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        left: -35,
+        paddingLeft: 15
     }
 
   });

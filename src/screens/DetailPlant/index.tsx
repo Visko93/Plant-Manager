@@ -75,7 +75,10 @@ export function DetailPlant({ route }: Route) {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       <View style={styles.upContainer}>
         <View style={styles.plantContainer}>
           <SvgFromUri

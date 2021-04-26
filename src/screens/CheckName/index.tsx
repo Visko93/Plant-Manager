@@ -8,8 +8,10 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //Components
 import Button from "../../components/atoms/Button";
@@ -25,7 +27,23 @@ export function CheckName() {
   const navigation = useNavigation();
 
   function handleConfirm() {
-    navigation.navigate("Confirmation", { params: name });
+    if (!name)
+      return Alert.alert("Ei, conta pra gente como podemos te chamar. 😊");
+    try {
+      AsyncStorage.setItem("@plantmanager:user", name); //@appname:key
+      navigation.navigate("Confirmation", {
+        title: "Prontinho",
+        buttonTitle: "Começar",
+        subtitle:
+          " Agora vamos começar a cuidar das suas plantinhas com muito cuidado.",
+        icon: "smile",
+        nextScreen: "PlantSelect",
+      });
+    } catch (err) {
+      Alert.alert(
+        "Não conseguimos salvar seu nome, Tenta de novo por favor. 😬"
+      );
+    }
   }
 
   const handleInputBlur = () => {

@@ -5,11 +5,12 @@ import colors from "../styles/colors";
 import { Welcome } from "../screens/Welcome";
 import { Confirmation } from "../screens/Confirmation";
 import { CheckName } from "../screens/CheckName";
-import { PlantSelect } from "../screens/PlantSelect";
+import { AuthRoutes } from "./tab.routes";
+import { DetailPlant } from "../screens/DetailPlant";
 
 const stackRoutes = createStackNavigator();
 
-const AppRoutes: React.FC = () => (
+const AppRoutes = () => (
   <stackRoutes.Navigator
     headerMode="none"
     screenOptions={{
@@ -21,7 +22,9 @@ const AppRoutes: React.FC = () => (
     <stackRoutes.Screen name="Welcome" component={Welcome} />
     <stackRoutes.Screen name="CheckName" component={CheckName} />
     <stackRoutes.Screen name="Confirmation" component={Confirmation} />
-    <stackRoutes.Screen name="PlantSelect" component={PlantSelect} />
+    <stackRoutes.Screen name="PlantSelect" component={AuthRoutes} />
+    <stackRoutes.Screen name="DetailPlant" component={DetailPlant} />
+    <stackRoutes.Screen name="CurrentPlants" component={AuthRoutes} />
   </stackRoutes.Navigator>
 );
 

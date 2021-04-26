@@ -17,11 +17,17 @@ export default function Button({
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={[styles.button, iconButton ? { width: 56 } : {}]}
+      style={[
+        styles.button,
+        iconButton ? { width: 56 } : {},
+        rest.disabled ? styles.btnDisable : null,
+      ]}
       activeOpacity={0.6}
       {...rest}
     >
-      <Text style={styles.btntxt}>
+      <Text
+        style={[styles.btntxt, rest.disabled ? styles.btntxtDisable : null]}
+      >
         {title}
         {children ? children : null}
       </Text>

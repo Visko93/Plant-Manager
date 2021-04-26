@@ -15,5 +15,11 @@ export const styles = StyleSheet.create({
 
     btntxt: {
         color: colors.white
+    },
+    btntxtDisable: {
+        color: colors.body
+    },
+    btnDisable: {
+        backgroundColor: colors.shape,
     }
   });

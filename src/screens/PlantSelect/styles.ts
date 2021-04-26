@@ -5,6 +5,7 @@ import fonts from "../../styles/fonts";
 export const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: colors.background,
     },
     wrapper: {
       width: '100%',
@@ -31,13 +32,16 @@ export const styles = StyleSheet.create({
       paddingBottom: 5,
       marginLeft: 20,
       marginVertical: 32,
+      backgroundColor: colors.background
     },
     plantList: {
       flex: 1,
       paddingHorizontal:32,
-      justifyContent: 'center'
+      justifyContent: 'center',
+      backgroundColor: colors.background
     },
     plantListContainer: {
+      backgroundColor: colors.background,
       justifyContent: 'center',
       
     }

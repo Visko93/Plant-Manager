@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useNavigation } from "@react-navigation/core";
+import { useNavigation, useRoute } from "@react-navigation/core";
 
 //Components
 import Button from "../../components/atoms/Button";
@@ -14,11 +14,32 @@ import Button from "../../components/atoms/Button";
 //UI
 import { styles } from "./styles";
 
-export function Confirmation(props: any) {
+interface ConfirmationProps {
+  title: string;
+  subtitle: string;
+  buttonTitle: string;
+  icon: "smile" | "hug";
+  nextScreen: string;
+}
+
+const emojis = {
+  hug: "🤗",
+  smile: "😁",
+};
+
+export function Confirmation() {
   const navigation = useNavigation();
+  const routes = useRoute();
+  const {
+    title,
+    buttonTitle,
+    subtitle,
+    icon,
+    nextScreen,
+  } = routes.params as ConfirmationProps;
 
   function handleMoveOn() {
-    navigation.navigate("PlantSelect");
+    navigation.navigate(nextScreen);
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -28,14 +49,11 @@ export function Confirmation(props: any) {
       >
         <View style={styles.wrapper}>
           <View style={styles.form}>
-            <Text style={styles.emoji}>{"😁"}</Text>
-            <Text style={styles.title}>Prontinho</Text>
-            <Text style={styles.subtitle}>
-              Agora vamos começar a cuidar das suas plantinhas com muito
-              cuidado.
-            </Text>
+            <Text style={styles.emoji}>{emojis[icon]}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
             <View style={styles.callToAction}>
-              <Button onPress={handleMoveOn} title="Confirmar" />
+              <Button onPress={handleMoveOn} title={buttonTitle} />
             </View>
           </View>
         </View>
